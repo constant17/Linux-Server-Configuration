@@ -1,4 +1,4 @@
-# FSND-P5 Linux Server Configuration:
+# FSND-P5 Linux Server Configuration
 
 Live at [52.24.181.212][1] and [ec2-52-24-181-212.us-west-2.compute.amazonaws.com/][2]
 
@@ -57,6 +57,7 @@ Udacity & Ubuntu: [1][5] & [2][6]
 
 #### 6. More apache config
 Apache Docs & Digital Ocean: [1][7] & [2][8]
+
   ```touch /etc/apache2/sites-available/app.conf | echo 
   "<VirtualHost *:80>
 	      ServerName 52.24.181.212
