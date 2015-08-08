@@ -1,6 +1,6 @@
 # FSND-P5 Linux Server Configuration:
 
-Live at 52.24.181.212 and ec2-52-24-181-212.us-west-2.compute.amazonaws.com/
+Live at [52.24.181.212][1] and [ec2-52-24-181-212.us-west-2.compute.amazonaws.com/][2]
 
 ### Steps to setup FSND-P3 on a Ubuntu server
 #### 1. Download RSA Key, restrict key access, and ssh into instance:
@@ -8,7 +8,8 @@ Live at 52.24.181.212 and ec2-52-24-181-212.us-west-2.compute.amazonaws.com/
  -  `chmod 600 ~/.ssh/udacity_key.rsa`
  -  `ssh -i ~/.ssh/udacity_key.rsa root@52.26.58.234`
 
-#### 2. Install & upgrade packages, git
+#### 2. Install & upgrade packages, git:
+Ubuntu Docs: [1][3] & [2][4]
  -  `apt-get update`
  - `sudo apt-get upgrade`
  - `apt-get install unattended-upgrades`
@@ -18,6 +19,7 @@ Live at 52.24.181.212 and ec2-52-24-181-212.us-west-2.compute.amazonaws.com/
  - `git config --global user.email "kirkbrunson314@gmail.com"`
 
 #### 3. Install & configure apache
+Udacity & Ubuntu: [1][5] & [2][6]
  - `apt-get install apache2`
  - `apt-get install python-setuptools libapache2-mod-wsgi`
  - `echo "ServerName HOSTNAME" | sudo tee /etc/apache2/conf-available/fqdn.conf`
@@ -54,6 +56,7 @@ Live at 52.24.181.212 and ec2-52-24-181-212.us-west-2.compute.amazonaws.com/
  - `pip install bleach`
 
 #### 6. More apache config
+Apache Docs & Digital Ocean: [1][7] & [2][8]
   ```touch /etc/apache2/sites-available/app.conf | echo 
   "<VirtualHost *:80>
 	      ServerName 52.24.181.212
@@ -87,6 +90,7 @@ Live at 52.24.181.212 and ec2-52-24-181-212.us-west-2.compute.amazonaws.com/
 - `service apache2 restart`
 
 #### 7. Install & config postgres & instantiate db
+Ubuntu Docs & Digital Ocean: [1][9] & [2][10]
  - `apt-get install postgresql postgresql-contrib`
  - `cd /etc/postgresql/9.3/main/`
  - `su - postgres`
@@ -102,11 +106,13 @@ Live at 52.24.181.212 and ec2-52-24-181-212.us-west-2.compute.amazonaws.com/
  - `python createDB.py`
 
 #### 8. NTP config
+Ubuntu Docs: [1][11] & [2][12]
  - `dpkg-reconfigure tzdata`
  - `apt-get install ntp`
  - `vim /etc/ntp.conf` (edited to proper ntp server pool)
 
 #### 9. Monitor & ban abuse
+Glances & Fail2ban: [1][13] & [2][14]
  - `apt-get install python-pip build-essential python-dev`
  - `pip install Glances`
  - `apt-get install lm-sensors`
@@ -124,6 +130,7 @@ Live at 52.24.181.212 and ec2-52-24-181-212.us-west-2.compute.amazonaws.com/
  -  `visudo` ( add "grader ALL=(ALL:ALL) ALL" under line "root ALL ..." )
  
 #### 11. SSH
+Arch Linux: [1][15]
  - `vim /etc/ssh/sshd_config` (Enable password login)
  - On local machine: `ssh-keygen`
  - `scp ~/.ssh/id_rsa.pub grader@52.24.181.212:`
@@ -138,9 +145,29 @@ Live at 52.24.181.212 and ec2-52-24-181-212.us-west-2.compute.amazonaws.com/
  - `service ssh restart`
 
 #### 12. Firewall config
+Ufw Docs & Digital Ocean: [1][] & [2][]
  - `ufw enable`
  - `ufw allow 2200/tcp`
  - `ufw allow 80/tcp`
  - `ufw allow 123/udp`
  - `service ufw restart`
  - `exit` (Log out of root)
+
+
+[1]: http://52.24.181.212/
+[2]: http://ec2-52-24-181-212.us-west-2.compute.amazonaws.com/
+[3]: https://wiki.ubuntu.com/Security/Upgrades
+[4]: https://help.ubuntu.com/lts/serverguide/automatic-updates.html
+[5]: http://blog.udacity.com/2015/03/step-by-step-guide-install-lamp-linux-apache-mysql-python-ubuntu.html
+[6]: https://help.ubuntu.com/lts/serverguide/httpd.html
+[7]: http://httpd.apache.org/docs/2.2/en/mod/core.html#virtualhost
+[8]: https://www.digitalocean.com/community/tutorials/how-to-configure-the-apache-web-server-on-an-ubuntu-or-debian-vps
+[9]: https://help.ubuntu.com/community/PostgreSQL
+[10]: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-14-04
+[11]: https://help.ubuntu.com/community/UbuntuTime
+[12]: https://help.ubuntu.com/lts/serverguide/NTP.html
+[13]: https://pypi.python.org/pypi/Glances
+[14]: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-fail2ban-on-ubuntu-14-04
+[15]: https://wiki.archlinux.org/index.php/SSH_keys
+[16]: https://help.ubuntu.com/community/UFW
+[17]: https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server
