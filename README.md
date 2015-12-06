@@ -146,7 +146,7 @@ Arch Linux: [1][15]
  - `service ssh restart`
 
 #### 12. Firewall config
-Ufw Docs & Digital Ocean: [1][] & [2][]
+Ufw Docs & Digital Ocean: [1][16] & [2][17]
  - `ufw enable`
  - `ufw allow 2200/tcp`
  - `ufw allow 80/tcp`
