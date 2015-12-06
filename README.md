@@ -58,7 +58,8 @@ Udacity & Ubuntu: [1][5] & [2][6]
 #### 6. More apache config
 Apache Docs & Digital Ocean: [1][7] & [2][8]
 
-  ```touch /etc/apache2/sites-available/app.conf | echo 
+```
+touch /etc/apache2/sites-available/app.conf | echo 
   "<VirtualHost *:80>
 	      ServerName 52.24.181.212
 	      ServerAdmin admin@52.24.181.212
@@ -77,17 +78,20 @@ Apache Docs & Digital Ocean: [1][7] & [2][8]
 	      LogLevel warn
       CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>" >> 
-/etc/apache2/sites-available/app.conf```
+/etc/apache2/sites-available/app.conf
+```
  - `a2ensite app`
  - `cd ..` 
- ```touch app.wsgi | echo '#!/usr/bin/python
+ ```
+touch app.wsgi | echo '#!/usr/bin/python
  import sys
  import logging
  logging.basicConfig(stream=sys.stderr)
  sys.path.insert(0,"/var/www/app/")
  
  from app import app as application
- application.secret_key = "Add your secret key"' >> app.wsgi```
+ application.secret_key = "Add your secret key"' >> app.wsgi
+```
 - `service apache2 restart`
 
 #### 7. Install & config postgres & instantiate db
